@@ -36,7 +36,7 @@ jobs:
       with:
         action: 'upload'
         #app_location:
-        azure_static_web_apps_api_token: ${{ env.AZURE_LANDING_DEPLOY_TOKEN }}
+        azure_static_web_apps_api_token: ${{ secrets.AZURE_LANDING_DEPLOY_TOKEN }}
         #api_build_command: # optional
         #api_location: # optional
         #app_artifact_location: # optional

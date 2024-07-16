@@ -2,8 +2,6 @@ name: JavaScript CI
 
 on: [push]
 
-name: my-deploy
-
 env:
   AZURE_WEBAPP_NAME: landing   # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: 'my-app-path/dist'      # set this to the path to your web app project, defaults to the repository root

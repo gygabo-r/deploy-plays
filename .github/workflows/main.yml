@@ -4,7 +4,7 @@ on: [push]
 
 env:
   AZURE_WEBAPP_NAME: landing   # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: 'my-app-path/dist'      # set this to the path to your web app project, defaults to the repository root
+  AZURE_WEBAPP_PACKAGE_PATH: 'my-app/dist'      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '20.9.0'                # set this to the node version to use
 
 jobs:
@@ -30,12 +30,21 @@ jobs:
         npm install
         npm run build
       working-directory:  my-app
-               
-    # deploy web app using Azure credentials
-    # - uses: azure/webapps-deploy@v3
-    #  with:
-    #    app-name: ${{ env.AZURE_WEBAPP_NAME }}
-    #    package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
+    - name: 'Azure Static Web Apps Deploy'
+      uses: Azure/static-web-apps-deploy@v1
+      with:
+        action: 'upload'
+        #app_location:
+        azure_static_web_apps_api_token: ${{ env.AZURE_LANDING_DEPLOY_TOKEN }}
+        #api_build_command: # optional
+        #api_location: # optional
+        #app_artifact_location: # optional
+        output_location: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        #app_build_command: # optional
+        #repo_token: # optional
+        #routes_location: # optional
+        skip_app_build: true
 
     # Azure logout 
     - name: 'logout of azure'
